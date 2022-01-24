@@ -6,13 +6,13 @@ const canvas = document.querySelector("#canvas");
 const scene = new THREE.Scene();
 
 // Red Cube
-const geometry = new THREE.BoxGeometry(1, 1, 1);
-const material = new THREE.MeshBasicMaterial({ color: 0xff0000 });
-const mesh = new THREE.Mesh(geometry, material);
-mesh.position.z = 1;
-mesh.position.x = 1;
-mesh.position.y = -1;
-scene.add(mesh);
+// const geometry = new THREE.BoxGeometry(1, 1, 1);
+// const material = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+// const mesh = new THREE.Mesh(geometry, material);
+// mesh.position.z = 1;
+// mesh.position.x = 1;
+// mesh.position.y = -1;
+// scene.add(mesh);
 
 // Sizes
 const sizes = {
@@ -27,32 +27,61 @@ camera.position.x = 1;
 camera.position.y = -1;
 scene.add(camera);
 
-// Vector3 Methods
-// --- Distance from center
-// console.log(mesh.position.length())
+// // Vector3 Methods
+// // --- Distance from center
+// // console.log(mesh.position.length())
 
-// --- Distance of object from camera
-// console.log(mesh.position.distanceTo(camera.position));
+// // --- Distance of object from camera
+// // console.log(mesh.position.distanceTo(camera.position));
 
-// --- Take length of vector and reduce it to 1
-// mesh.position.normalize()
+// // --- Take length of vector and reduce it to 1
+// // mesh.position.normalize()
 
-// --- Change x, y, z values at once
-mesh.position.set(0.5, -2, 0.7);
+// // --- Change x, y, z values at once
+// mesh.position.set(0.5, -2, 0.7);
 
-// --- Scale
-mesh.scale.set(2, 0.5, 0.5);
-// mesh.scale.x = 2;
-// mesh.scale.y = 0.5;
-// mesh.scale.z = 0.5;
+// // --- Scale
+// mesh.scale.set(2, 0.5, 0.5);
+// // mesh.scale.x = 2;
+// // mesh.scale.y = 0.5;
+// // mesh.scale.z = 0.5;
 
-// Rotate
-// Be careful with the order (x, y, z by default), or else one of axes may get locked
-// To fix it, change the order. Example --> object.rotation.reorder('yxz'). Do it before changing rotation.
-mesh.rotation.y = Math.PI * 0.5;
+// // Rotate
+// // Be careful with the order (x, y, z by default), or else one of axes may get locked
+// // To fix it, change the order. Example --> object.rotation.reorder('yxz'). Do it before changing rotation.
+// mesh.rotation.y = Math.PI * 0.5;
 
-// rotate the object so that its -z faces the target you provided
-camera.lookAt(mesh.position);
+// // rotate the object so that its -z faces the target you provided
+// camera.lookAt(mesh.position);
+
+// You can group the objects and apply position, scale, rotation transformations at once
+const group = new THREE.Group();
+scene.add(group);
+
+const cube1 = new THREE.Mesh(
+  new THREE.BoxGeometry(1, 1, 1),
+  new THREE.MeshBasicMaterial({ color: 0xff0000 })
+);
+cube1.position.x = 1;
+group.add(cube1);
+
+const cube2 = new THREE.Mesh(
+  new THREE.BoxGeometry(1, 1, 1),
+  new THREE.MeshBasicMaterial({ color: 0x00ff00 })
+);
+cube2.position.x = -1;
+group.add(cube2);
+
+const cube3 = new THREE.Mesh(
+  new THREE.BoxGeometry(1, 1, 1),
+  new THREE.MeshBasicMaterial({ color: 0x0000ff })
+);
+cube3.position.x = 3;
+group.add(cube3);
+
+group.position.y = -1;
+group.scale.z = 2;
+group.rotation.x = 1;
 
 // --- Axes Helper
 const axesHelper = new THREE.AxesHelper();
