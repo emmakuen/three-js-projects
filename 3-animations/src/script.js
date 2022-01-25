@@ -38,8 +38,7 @@ const tick = () => {
   // Clock
   const elapsedTime = clock.getElapsedTime();
   // Rotate once per second
-  //   mesh.rotation.y = Math.PI * 2 * elapsedTime; // adjust the animation speed based on the framerate
-  mesh.position.y = Math.sin(elapsedTime);
+  mesh.rotation.y = Math.PI * 2 * elapsedTime; // adjust the animation speed based on the framerate
 
   //   mesh.position.x += 0.001;
   //   mesh.position.y += 0.001;
