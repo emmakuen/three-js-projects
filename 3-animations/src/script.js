@@ -1,5 +1,7 @@
 import "./style.css";
 import * as THREE from "three";
+// library for advanced animations
+import gsap from "gsap";
 
 // Canvas
 const canvas = document.querySelector("canvas.webgl");
@@ -31,19 +33,35 @@ const renderer = new THREE.WebGLRenderer({
 renderer.setSize(sizes.width, sizes.height);
 
 // Clock
-const clock = new THREE.Clock();
+// const clock = new THREE.Clock();
+
+gsap.to(mesh.position, {
+  x: 2,
+  duration: 1,
+  delay: 1,
+});
 
 // Animations
 const tick = () => {
   // Clock
-  const elapsedTime = clock.getElapsedTime();
-  // Rotate once per second
-  mesh.rotation.y = Math.PI * 2 * elapsedTime; // adjust the animation speed based on the framerate
+  //   const elapsedTime = clock.getElapsedTime();
 
-  //   mesh.position.x += 0.001;
-  //   mesh.position.y += 0.001;
-  //   mesh.rotation.z += 0.001;
-  console.log("tick");
+  // Rotate once per second
+  //   mesh.rotation.y = Math.PI * 2 * elapsedTime; // adjust the animation speed based on the framerate
+
+  // Rotate box in a circle
+  //   mesh.position.y = Math.sin(elapsedTime);
+  //   mesh.position.x = Math.cos(elapsedTime);
+
+  // Rotate camera in a circle and make it look at the box
+  //   camera.position.y = Math.sin(elapsedTime);
+  //   camera.position.x = Math.cos(elapsedTime);
+  //   camera.lookAt(mesh.position);
+
+  //   //   mesh.position.x += 0.001;
+  //   //   mesh.position.y += 0.001;
+  //   //   mesh.rotation.z += 0.001;
+  //   console.log("tick");
 
   // Render
   renderer.render(scene, camera);
